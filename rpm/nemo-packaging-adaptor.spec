@@ -26,8 +26,7 @@ BuildArch:  noarch
 
 %install
 
-#install -D README.md %{buildroot}/%{_docdir}/%{name}
-install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
