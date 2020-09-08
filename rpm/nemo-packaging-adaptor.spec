@@ -15,7 +15,7 @@ BuildArch:  noarch
 %package qt-linguist
 Summary:    Matching requirements by Mer to Fedora: Qt Linguist
 Group:      Configs
-Requires:   qt-linguist >= 5.14.0
+Requires:   qt5-linguist >= 5.14.0
 Provides:   qt5-qttools-linguist = 5.14.0
 BuildArch:  noarch
 
