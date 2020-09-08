@@ -11,22 +11,36 @@ BuildArch:  noarch
 %description
 %{summary}
 
+
 %package qt-linguist
 Summary:    Matching requirements by Mer to Fedora: Qt Linguist
 Group:      Configs
-Requires:   qt-linguist
-Provides:   qt5-qttools-linguist
+Requires:   qt-linguist >= 5.14.0
+Provides:   qt5-qttools-linguist = 5.14.0
 BuildArch:  noarch
 
 %description qt-linguist
 %{summary}
- 
+
+
+%package swi-prolog
+Summary:    Matching requirements by Mer to Fedora: Prolog
+Group:      Configs
+Requires:   pl >= 8.0
+Provides:   swi-prolog-library-core = 8.0
+BuildArch:  noarch
+
+%description swi-prolog
+%{summary}
+
+
 %prep
 %setup -q -n %{name}-%{version}
 
 %install
 
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
@@ -43,3 +57,7 @@ ln -sf lupdate-qt5 %{buildroot}/%{_bindir}/lupdate
 %{_bindir}/lrelease
 %{_bindir}/lupdate
 %{_docdir}/%{name}-qt-linguist
+
+%files swi-prolog
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-swi-prolog
