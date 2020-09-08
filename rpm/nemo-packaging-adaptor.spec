@@ -34,6 +34,17 @@ BuildArch:  noarch
 %{summary}
 
 
+%package gstreamer-plugins-good
+Summary:    Matching requirements by Mer to Fedora: GStreamer Plugins Good
+Group:      Configs
+Requires:   gstreamer1-plugins-good >= 1.16.0
+Provides:   gstreamer1.0-plugins-good = 1.16.0
+BuildArch:  noarch
+
+%description gstreamer-plugins-good
+%{summary}
+
+
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -41,6 +52,7 @@ BuildArch:  noarch
 
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-gstreamer-plugins-good/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
@@ -61,3 +73,7 @@ ln -sf lupdate-qt5 %{buildroot}/%{_bindir}/lupdate
 %files swi-prolog
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-swi-prolog
+
+%files gstreamer-plugins-good
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-gstreamer-plugins-good
