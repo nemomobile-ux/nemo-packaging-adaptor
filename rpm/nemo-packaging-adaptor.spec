@@ -27,6 +27,8 @@ BuildArch:  noarch
 Summary:    Matching requirements by Mer to Fedora: Prolog
 Group:      Configs
 Requires:   pl >= 8.0
+Provides:   swi-prolog = 8.0
+Provides:   swi-prolog-library = 8.0
 Provides:   swi-prolog-library-core = 8.0
 BuildArch:  noarch
 
