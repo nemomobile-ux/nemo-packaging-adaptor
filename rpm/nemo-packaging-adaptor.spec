@@ -12,14 +12,14 @@ BuildArch:  noarch
 %{summary}
 
 
-%package qt-linguist
-Summary:    Matching requirements by Mer to Fedora: Qt Linguist
+%package gstreamer-plugins-good
+Summary:    Matching requirements by Mer to Fedora: GStreamer Plugins Good
 Group:      Configs
-Requires:   qt5-linguist >= 5.12.0
-Provides:   qt5-qttools-linguist = 5.12.0
+Requires:   gstreamer1-plugins-good >= 1.16.0
+Provides:   gstreamer1.0-plugins-good = 1.16.0
 BuildArch:  noarch
 
-%description qt-linguist
+%description gstreamer-plugins-good
 %{summary}
 
 
@@ -36,14 +36,26 @@ BuildArch:  noarch
 %{summary}
 
 
-%package gstreamer-plugins-good
-Summary:    Matching requirements by Mer to Fedora: GStreamer Plugins Good
+%package qt-linguist
+Summary:    Matching requirements by Mer to Fedora: Qt Linguist
 Group:      Configs
-Requires:   gstreamer1-plugins-good >= 1.16.0
-Provides:   gstreamer1.0-plugins-good = 1.16.0
+Requires:   qt5-linguist >= 5.12.0
+Provides:   qt5-qttools-linguist = 5.12.0
 BuildArch:  noarch
 
-%description gstreamer-plugins-good
+%description qt-linguist
+%{summary}
+
+
+%package qt-qmake
+Summary:    Matching requirements by Mer to Fedora: Qt5 Qmake and Tools
+Group:      Configs
+Requires:   qt5-qtbase-devel >= 5.12.0
+Provides:   qt5-qmake = 5.12.0
+Provides:   qt5-tools = 5.12.0
+BuildArch:  noarch
+
+%description qt-qmake
 %{summary}
 
 
@@ -52,9 +64,10 @@ BuildArch:  noarch
 
 %install
 
-install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
-install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-gstreamer-plugins-good/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-qmake/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
@@ -64,6 +77,17 @@ ln -sf linguist-qt5 %{buildroot}/%{_bindir}/linguist
 ln -sf lrelease-qt5 %{buildroot}/%{_bindir}/lrelease
 ln -sf lupdate-qt5 %{buildroot}/%{_bindir}/lupdate
 
+# qmake
+ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
+
+%files gstreamer-plugins-good
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-gstreamer-plugins-good
+
+%files swi-prolog
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-swi-prolog
+
 %files qt-linguist
 %defattr(-,root,root,-)
 %{_bindir}/lconvert
@@ -72,10 +96,7 @@ ln -sf lupdate-qt5 %{buildroot}/%{_bindir}/lupdate
 %{_bindir}/lupdate
 %{_docdir}/%{name}-qt-linguist
 
-%files swi-prolog
+%files qt-qmake
 %defattr(-,root,root,-)
-%{_docdir}/%{name}-swi-prolog
-
-%files gstreamer-plugins-good
-%defattr(-,root,root,-)
-%{_docdir}/%{name}-gstreamer-plugins-good
+%{_bindir}/qmake
+%{_docdir}/%{name}-qt-qmake
