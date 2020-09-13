@@ -36,6 +36,51 @@ BuildArch:  noarch
 %{summary}
 
 
+%package qt-base
+Summary:    Matching requirements by Mer to Fedora: Qt Base
+Group:      Configs
+Requires:   qt5-qtbase >= 5.12.0
+Provides:   qt5-plugin-sqldriver-sqlite = 5.12.0
+BuildArch:  noarch
+
+%description qt-base
+%{summary}
+
+
+%package qt-base-devel
+Summary:    Matching requirements by Mer to Fedora: Qt Base Development Tools
+Group:      Configs
+Requires:   pkgconfig(Qt5) >= 5.12.0
+Requires:   pkgconfig(Qt5Core) >= 5.12.0
+Provides:   qt5-tools = 5.12.0
+BuildArch:  noarch
+
+%description qt-base-devel
+%{summary}
+
+
+%package qt-base-gui
+Summary:    Matching requirements by Mer to Fedora: Qt Base Gui
+Group:      Configs
+Requires:   qt5-qtbase-gui >= 5.12.0
+Provides:   qt5-plugin-platform-minimal = 5.12.0
+BuildArch:  noarch
+
+%description qt-base-gui
+%{summary}
+
+
+%package qt-help-devel
+Summary:    Matching requirements by Mer to Fedora: Qt Help Tools
+Group:      Configs
+Requires:   pkgconfig(Qt5Help) >= 5.12.0
+Provides:   qt5-qttools-qthelp-devel = 5.12.0
+BuildArch:  noarch
+
+%description qt-help-devel
+%{summary}
+
+
 %package qt-linguist
 Summary:    Matching requirements by Mer to Fedora: Qt Linguist
 Group:      Configs
@@ -66,6 +111,10 @@ BuildArch:  noarch
 
 install -D README.md %{buildroot}/%{_docdir}/%{name}-gstreamer-plugins-good/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-devel/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-gui/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-help-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-qmake/README.md
 
@@ -87,6 +136,22 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %files swi-prolog
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-swi-prolog
+
+%files qt-base
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-base
+
+%files qt-base-devel
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-base-devel
+
+%files qt-base-gui
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-base-gui
+
+%files qt-help-devel
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-help-devel
 
 %files qt-linguist
 %defattr(-,root,root,-)
