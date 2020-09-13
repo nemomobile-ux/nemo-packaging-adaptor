@@ -52,6 +52,7 @@ Summary:    Matching requirements by Mer to Fedora: Qt Base Development Tools
 Group:      Configs
 Requires:   pkgconfig(Qt5) >= 5.12.0
 Requires:   pkgconfig(Qt5Core) >= 5.12.0
+Provides:   qt5-qmake = 5.12.0
 Provides:   qt5-tools = 5.12.0
 BuildArch:  noarch
 
@@ -92,18 +93,6 @@ BuildArch:  noarch
 %{summary}
 
 
-%package qt-qmake
-Summary:    Matching requirements by Mer to Fedora: Qt5 Qmake and Tools
-Group:      Configs
-Requires:   qt5-qtbase-devel >= 5.12.0
-Provides:   qt5-qmake = 5.12.0
-Provides:   qt5-tools = 5.12.0
-BuildArch:  noarch
-
-%description qt-qmake
-%{summary}
-
-
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -116,7 +105,6 @@ install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-gui/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-help-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
-install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-qmake/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
@@ -126,7 +114,7 @@ ln -sf linguist-qt5 %{buildroot}/%{_bindir}/linguist
 ln -sf lrelease-qt5 %{buildroot}/%{_bindir}/lrelease
 ln -sf lupdate-qt5 %{buildroot}/%{_bindir}/lupdate
 
-# qmake
+# qmake as a part of qt base devel
 ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 
 %files gstreamer-plugins-good
@@ -143,6 +131,7 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 
 %files qt-base-devel
 %defattr(-,root,root,-)
+%{_bindir}/qmake
 %{_docdir}/%{name}-qt-base-devel
 
 %files qt-base-gui
@@ -160,8 +149,3 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %{_bindir}/lrelease
 %{_bindir}/lupdate
 %{_docdir}/%{name}-qt-linguist
-
-%files qt-qmake
-%defattr(-,root,root,-)
-%{_bindir}/qmake
-%{_docdir}/%{name}-qt-qmake
