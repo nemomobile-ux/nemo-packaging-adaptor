@@ -116,6 +116,17 @@ BuildArch:  noarch
 %{summary}
 
 
+%package qt-multimedia
+Summary:    Matching requirements by Mer to Fedora: Qt Multimedia
+Group:      Configs
+Requires:   qt5-qtmultimedia >= 5.12.0
+Provides:   qt5-qtmultimedia-gsttools = 5.12.0
+BuildArch:  noarch
+
+%description qt-multimedia
+%{summary}
+
+
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -130,6 +141,7 @@ install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-gui/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-help-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-multimedia/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
@@ -182,3 +194,7 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %{_bindir}/lrelease
 %{_bindir}/lupdate
 %{_docdir}/%{name}-qt-linguist
+
+%files qt-multimedia
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-multimedia
