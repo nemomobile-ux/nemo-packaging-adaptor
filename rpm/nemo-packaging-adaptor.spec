@@ -35,6 +35,17 @@ BuildArch:  noarch
 %{summary}
 
 
+%package iptables
+Summary:    Matching requirements by Mer to Fedora: IP tables
+Group:      Configs
+Requires:   iptables >= 1.8.4
+Provides:   iptables-ipv6 = 1.8.4
+BuildArch:  noarch
+
+%description iptables
+%{summary}
+
+
 %package swi-prolog
 Summary:    Matching requirements by Mer to Fedora: Prolog
 Group:      Configs
@@ -112,6 +123,7 @@ BuildArch:  noarch
 
 install -D README.md %{buildroot}/%{_docdir}/%{name}-bluez-libs-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-gstreamer-plugins-good/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-iptables/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-devel/README.md
@@ -137,6 +149,10 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %files gstreamer-plugins-good
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-gstreamer-plugins-good
+
+%files iptables
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-iptables
 
 %files swi-prolog
 %defattr(-,root,root,-)
