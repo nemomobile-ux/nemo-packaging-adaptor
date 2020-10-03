@@ -12,6 +12,18 @@ BuildArch:  noarch
 %{summary}
 
 
+%package bluez-libs-devel
+Summary:    Matching requirements by Mer to Fedora: Bluez5 devel libs
+Group:      Configs
+Requires:   pkgconfig(bluez) >= 5.54
+Provides:   pkgconfig(bluez5) = 5.54
+Provides:   bluez5-libs-devel = 5.54
+BuildArch:  noarch
+
+%description bluez-libs-devel
+%{summary}
+
+
 %package gstreamer-plugins-good
 Summary:    Matching requirements by Mer to Fedora: GStreamer Plugins Good
 Group:      Configs
@@ -98,6 +110,7 @@ BuildArch:  noarch
 
 %install
 
+install -D README.md %{buildroot}/%{_docdir}/%{name}-bluez-libs-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-gstreamer-plugins-good/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base/README.md
@@ -116,6 +129,10 @@ ln -sf lupdate-qt5 %{buildroot}/%{_bindir}/lupdate
 
 # qmake as a part of qt base devel
 ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
+
+%files bluez-libs-devel
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-bluez-libs-devel
 
 %files gstreamer-plugins-good
 %defattr(-,root,root,-)
