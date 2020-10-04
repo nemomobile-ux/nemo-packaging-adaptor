@@ -24,6 +24,17 @@ BuildArch:  noarch
 %{summary}
 
 
+%package glibc-private
+Summary:    Matching requirements by Mer to Fedora: Glibc Private
+Group:      Configs
+Requires:   glibc
+Provides:   libc.so.6(GLIBC_PRIVATE)
+BuildArch:  noarch
+
+%description glibc-private
+%{summary}
+
+
 %package gstreamer-plugins-good
 Summary:    Matching requirements by Mer to Fedora: GStreamer Plugins Good
 Group:      Configs
@@ -73,10 +84,17 @@ BuildArch:  noarch
 %package qt-base-devel
 Summary:    Matching requirements by Mer to Fedora: Qt Base Development Tools
 Group:      Configs
+Requires:   qt5-qtbase-private-devel >= 5.12.0
 Requires:   pkgconfig(Qt5) >= 5.12.0
 Requires:   pkgconfig(Qt5Core) >= 5.12.0
+Requires:   pkgconfig(Qt5Gui) >= 5.12.0
+Requires:   pkgconfig(Qt5Network) >= 5.12.0
 Provides:   qt5-qmake = 5.12.0
 Provides:   qt5-tools = 5.12.0
+Provides:   qt5-qtcore-devel = 5.12.0
+Provides:   qt5-qtgui-devel = 5.12.0
+Provides:   qt5-qtnetwork-devel = 5.12.0
+Provides:   qt5-qtplatformsupport-devel = 5.12.0
 BuildArch:  noarch
 
 %description qt-base-devel
@@ -91,6 +109,28 @@ Provides:   qt5-plugin-platform-minimal = 5.12.0
 BuildArch:  noarch
 
 %description qt-base-gui
+%{summary}
+
+
+%package qt-dbus-devel
+Summary:    Matching requirements by Mer to Fedora: Qt DBus
+Group:      Configs
+Requires:   pkgconfig(Qt5DBus) >= 5.13.0
+Provides:   qt5-qtdbus-devel = 5.13
+BuildArch:  noarch
+
+%description qt-dbus-devel
+%{summary}
+
+
+%package qt-declarative-devel
+Summary:    Matching requirements by Mer to Fedora: Qt Declarative
+Group:      Configs
+Requires:   pkgconfig(Qt5Quick) >= 5.13.0
+Provides:   qt5-qtdeclarative-qtquick-devel = 5.13
+BuildArch:  noarch
+
+%description qt-declarative-devel
 %{summary}
 
 
@@ -127,21 +167,37 @@ BuildArch:  noarch
 %{summary}
 
 
+%package qt-wayland-devel
+Summary:    Matching requirements by Mer to Fedora: Qt Wayland
+Group:      Configs
+Requires:   pkgconfig(Qt5WaylandCompositor) >= 5.13.0
+Requires:   pkgconfig(Qt5WaylandClient) >= 5.13.0
+Provides:   qt5-qtwayland-wayland_egl-devel = 5.13
+BuildArch:  noarch
+
+%description qt-wayland-devel
+%{summary}
+
+
 %prep
 %setup -q -n %{name}-%{version}
 
 %install
 
 install -D README.md %{buildroot}/%{_docdir}/%{name}-bluez-libs-devel/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-glibc-private/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-gstreamer-plugins-good/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-iptables/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-swi-prolog/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-base-gui/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-dbus-devel/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-declarative-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-help-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-multimedia/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-wayland-devel/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
@@ -157,6 +213,10 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %files bluez-libs-devel
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-bluez-libs-devel
+
+%files glibc-private
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-glibc-private
 
 %files gstreamer-plugins-good
 %defattr(-,root,root,-)
@@ -183,6 +243,14 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-qt-base-gui
 
+%files qt-dbus-devel
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-dbus-devel
+
+%files qt-declarative-devel
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-declarative-devel
+
 %files qt-help-devel
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-qt-help-devel
@@ -198,3 +266,7 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %files qt-multimedia
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-qt-multimedia
+
+%files qt-wayland-devel
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-qt-wayland-devel
