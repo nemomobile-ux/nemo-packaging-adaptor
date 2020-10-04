@@ -24,6 +24,17 @@ BuildArch:  noarch
 %{summary}
 
 
+%package busybox-static
+Summary:    Matching requirements by Mer to Fedora: Busybox Static
+Group:      Configs
+Requires:   busybox >= 1.31.1
+Provides:   busybox-static = 1.31.1
+BuildArch:  noarch
+
+%description busybox-static
+%{summary}
+
+
 %package glibc-private
 Summary:    Matching requirements by Mer to Fedora: Glibc Private
 Group:      Configs
@@ -201,6 +212,10 @@ install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-wayland-devel/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
+# busybox static
+mkdir -p %{buildroot}/sbin
+ln -s busybox %{buildroot}/sbin/busybox-static
+
 # linguist
 ln -sf lconvert-qt5 %{buildroot}/%{_bindir}/lconvert
 ln -sf linguist-qt5 %{buildroot}/%{_bindir}/linguist
@@ -213,6 +228,10 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %files bluez-libs-devel
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-bluez-libs-devel
+
+%files busybox-static
+%defattr(-,root,root,-)
+/sbin/busybox-static
 
 %files glibc-private
 %defattr(-,root,root,-)
