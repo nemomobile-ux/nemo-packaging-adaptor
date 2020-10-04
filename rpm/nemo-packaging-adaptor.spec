@@ -213,8 +213,8 @@ install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-wayland-devel/README.md
 mkdir -p %{buildroot}/%{_bindir}
 
 # busybox static
-mkdir -p %{buildroot}/sbin
-ln -s busybox %{buildroot}/sbin/busybox-static
+mkdir -p %{buildroot}/bin
+ln -s ../sbin/busybox %{buildroot}/bin/busybox-static
 
 # linguist
 ln -sf lconvert-qt5 %{buildroot}/%{_bindir}/lconvert
@@ -231,7 +231,7 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 
 %files busybox-static
 %defattr(-,root,root,-)
-/sbin/busybox-static
+/bin/busybox-static
 
 %files glibc-private
 %defattr(-,root,root,-)
