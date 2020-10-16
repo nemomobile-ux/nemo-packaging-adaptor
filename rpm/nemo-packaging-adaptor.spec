@@ -190,6 +190,17 @@ BuildArch:  noarch
 %{summary}
 
 
+%package libwayland-egl
+Summary:    Matching requirements by Mer to Fedora: Wayland EGL library
+Group:      Configs
+Requires:   libwayland-egl >= 1.18.0
+Provides:   wayland-egl = 1.18.0
+BuildArch:  noarch
+
+%description libwayland-egl
+%{summary}
+
+
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -209,6 +220,7 @@ install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-help-devel/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-linguist/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-multimedia/README.md
 install -D README.md %{buildroot}/%{_docdir}/%{name}-qt-wayland-devel/README.md
+install -D README.md %{buildroot}/%{_docdir}/%{name}-libwayland-egl/README.md
 
 mkdir -p %{buildroot}/%{_bindir}
 
@@ -289,3 +301,7 @@ ln -sf qmake-qt5 %{buildroot}/%{_bindir}/qmake
 %files qt-wayland-devel
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-qt-wayland-devel
+
+%files libwayland-egl
+%defattr(-,root,root,-)
+%{_docdir}/%{name}-libwayland-egl
